@@ -30,8 +30,7 @@
 	* 在使用webpack+npm+react的开发模式种中，难点在于webpack.config.js的配置:<br/>
 	     1.路径的配置必须为绝对路径，但相对路径也不会报错。比较常用的配置方法如下：<br/>
 	    	    `var path = require('path');`
-
-		  	打包输出：`output:{
+		    打包输出：`output:{
         			path:path.resolve(__dirname, 'dist/assets'),
         			filename:'index.js'
     			},`
