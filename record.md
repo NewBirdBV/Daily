@@ -1,3 +1,4 @@
+----
 # 2017/5/15
 * Homebrew简介：<br/>
 	Homebrew简称brew，是Mac OSX上的软件包管理工具，能在Mac中方便的安装软件或者卸载软件，可以说Homebrew就是mac下的apt-get、yum神器。
@@ -16,5 +17,15 @@
 	3. 输入文件名.按下 enter键使用默认的文件名.
 	4. 输入 push文件时候要用的密码.
 	5. 添加到自己的 github 账号里.
+----
+# 2017/5/16
+* webpack,npm,react 开发框架搭建<br/>
+	* webpack全局安装时可能要在命令前加入 'sudo',否则会安装失败.如下:<br />
+	<code>sudo npm install webpack -g</code>
+	* 在 package.json 中 devDependencies 里面的插件只用于开发环境，不用于生产环境，而 dependencies  是需要发布到生产环境的。
+	* 卸载开发环境里的包
+	<code>npm uninstall packageName --save-dev</code>
+
 	
+
 	
