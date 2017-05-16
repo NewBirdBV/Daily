@@ -38,7 +38,7 @@
     			},`
 		>
 	     2.在使用webpack时，需要添加HtmlWebpackPlugin组件：<br/>
-         >`var HtmlWebpackPlugin = require('html-webpack-plugin');`
+             >`var HtmlWebpackPlugin = require('html-webpack-plugin');`
 	     >
 	     >组件配置:
 	     >`plugins: [
