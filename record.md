@@ -37,14 +37,14 @@
     			},`
 	     >
 	     2.在使用webpack时，需要添加HtmlWebpackPlugin组件：<br/>
-         >>`var HtmlWebpackPlugin = require('html-webpack-plugin');`
-	     >>
-	     >>组件配置:
-	     >>`plugins: [
+                 >>`var HtmlWebpackPlugin = require('html-webpack-plugin');`
+	         >
+	         >>组件配置:
+	         >>`plugins: [
         			new HtmlWebpackPlugin({
             				template: __dirname + "/src/index.html"//new 一个这个插件的实例，并传入相关的参数
         			})
     			]`
-	
+	     >
 
 	
