@@ -27,15 +27,18 @@
 	* 在 package.json 中 devDependencies 里面的插件只用于开发环境，不用于生产环境，而 dependencies  是需要发布到生产环境的。
 	* 卸载开发环境里的包
 	<code>npm uninstall packageName --save-dev</code>
-	* 在使用webpack+npm+react的开发模式种中，难点在于webpack.config.js的配置:
+	* 在使用webpack+npm+react的开发模式种中，难点在于webpack.config.js的配置:<br/>
 	     1.路径的配置必须为绝对路径，但相对路径也不会报错。比较常用的配置方法如下：<br/>
-	     `var path = require('path');`
-	     打包输出：`output:{
+	    	    `var path = require('path');`
+         
+		  	打包输出：`output:{
         			path:path.resolve(__dirname, 'dist/assets'),
         			filename:'index.js'
     			},`
-	     2.在使用webpack式，需要添加HtmlWebpackPlugin组件：`var HtmlWebpackPlugin = require('html-webpack-plugin');`
-	     组件配置：`plugins: [
+	     2.在使用webpack式，需要添加HtmlWebpackPlugin组件：<br/>
+	     	`var HtmlWebpackPlugin = require('html-webpack-plugin');`
+
+			组件配置:`plugins: [
         			new HtmlWebpackPlugin({
             				template: __dirname + "/src/index.html"//new 一个这个插件的实例，并传入相关的参数
         			})
