@@ -66,11 +66,11 @@
 	 + 类的属性名可以是表达式.如下:
 	 	`let methodName = "getArea";
 	  	class Square{
-  		constructor(length) {
+  			constructor(length) {
     			// ...
-  		}
-  		[methodName]() {
-    			// ...
+  			}
+  			[methodName]() {
+    				// ...
   			}
   		}`
 		
