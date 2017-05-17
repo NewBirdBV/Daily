@@ -28,23 +28,58 @@
 	* 卸载开发环境里的包
 	<code>npm uninstall packageName --save-dev</code>
 	* 在使用webpack+npm+react的开发模式种中，难点在于webpack.config.js的配置:<br/>
-	     1.路径的配置必须为绝对路径，但相对路径也不会报错。比较常用的配置方法如下：<br/>
-		 >>`var path = require('path');`
-		 >	
-		 >>打包输出：`output:{
+		1. 路径的配置必须为绝对路径，但相对路径也不会报错。比较常用的配置方法如下：<br/>
+		    `var path = require('path');`
+		    
+		 	打包输出：`output:{
         			path:path.resolve(__dirname, 'dist/assets'),
         			filename:'index.js'
     			},`
-	     >
-	     2.在使用webpack时，需要添加HtmlWebpackPlugin组件：<br/>
-                 >>`var HtmlWebpackPlugin = require('html-webpack-plugin');`
-	         >
-	         >>组件配置:
-	         >>`plugins: [
+    	2. 在使用webpack时，需要添加HtmlWebpackPlugin组件：<br/>
+            `var HtmlWebpackPlugin = require('html-webpack-plugin');`
+	         
+	         组件配置:
+	         `plugins: [
         			new HtmlWebpackPlugin({
             				template: __dirname + "/src/index.html"//new 一个这个插件的实例，并传入相关的参数
         			})
     			]`
-	     >
-
+--------
+# 2017/5/17
+#Class关键字
+- 用法:通过 class关键字,可以定义类,其实质为一个语法糖.
+	+ 语法
 	
+	`class Point {
+  		constructor(x, y) {
+    		this.x = x;
+    		this.y = y;
+  		}								
+  		toString() {
+    		return '(' + this.x + ', ' + this.y + ')';
+  		}
+	 }` 
+	 + 定义类的方法时不需要加 function 关键词,方法之间无需逗号分隔.其用法和 java基本相似.	 
+	 + 在类的实例上调用方法,就是在调用原型上的方法.
+	 + 类内部定义的所有方法都是不可枚举的.
+	 + 类的属性名可以是表达式.如下: 
+	 `let methodName = "getArea";
+	  class Square{
+  		constructor(length) {
+    		// ...
+  		}
+  		[methodName]() {
+    		// ...
+  		}
+  	}`
+  	+ constructor方法是类的默认方法,返回值为一个实例对象.实例对象的属性除非显式定义在对象的本身上,否则都定义在原型上.
+  	+ 类的所有实例共享一个原型对象.可以通过原型对象的实例__prototype__属性为 class添加方法.
+  	+ class不存在变量的提升.
+  	+ class中this的指向类的实例.所以推荐使用箭头函数来绑定 this,使其指向外部作用域的 this.
+  	+  **注意区分 es5和 es6的继承机制.**两种机制相反.ES5的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）;ES6的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
+  	+ 子类继承父类时,子类首先在 constructor中调用 super()方法之后才能使用 this. 子类的构造函数必须执行一次 super 函数.	
+  	+ 子类的__proto__属性表示构造函数的继承,总是指向父类.
+  		子类的 prototype 属性的__proto__属性表示方法的继承,总是指向父类的 prototype 属性.
+  	+ super的两种用法:
+  		1. super作为函数调用时，代表父类的构造函数.
+  		2. super作为对象,在类的普通方法中指向父类的原型对象;在静态方法中指向父类.(** 因为 super指向父类的原型对象,所以定义在父类实例上的方法或属性无法通过 super 获取**).通过 super调用父类的方法时, super会绑定子类的 this. 
