@@ -65,15 +65,14 @@
 	 + 类内部定义的所有方法都是不可枚举的.
 	 + 类的属性名可以是表达式.如下:
 	 	`let methodName = "getArea";
-	  	class Square{
-  			constructor(length) {
-    			// ...
+	  	 class Square{
+		 	constructor(length) {
+    				// ...
   			}
   			[methodName]() {
     				// ...
   			}
-  		}`
-		
+		}`	
   	+ constructor方法是类的默认方法,返回值为一个实例对象.实例对象的属性除非显式定义在对象的本身上,否则都定义在原型上.
   	+ 类的所有实例共享一个原型对象.可以通过原型对象的实例__prototype__属性为 class添加方法.
   	+ class不存在变量的提升.
