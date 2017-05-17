@@ -66,6 +66,7 @@
 	 + 在类的实例上调用方法,就是在调用原型上的方法.
 	 + 类内部定义的所有方法都是不可枚举的.
 	 + 类的属性名可以是表达式.如下: 
+	 
 	 `let methodName = "getArea";
 	  class Square{
   		constructor(length) {
