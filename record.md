@@ -89,12 +89,12 @@
 
 --------
 # 2017/5/18
-##React-Router
+## React-Router
 - Router是 React的一个组件.Router组件本身只是一个容器,路由要通过 Route组件定义.
 	+ 参数 history,值为 hashHistoy.表示路由切换由URL的 hash变化决定.
 	+ 可以使用多个 Route组件来定义 URL和组件的映射关系.
 	
-##嵌套路由
+## 嵌套路由
 - 可以在 Route组件中嵌套多层 Route 组件来形成嵌套加载关系,按照嵌套次序依次加载组件.
 	+ Link 组件是`<a>`标签的 React 版本,可以接收 Router的状态.
 	
