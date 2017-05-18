@@ -86,3 +86,35 @@
   	+ super的两种用法:
   		1.super作为函数调用时，代表父类的构造函数.
   		2.super作为对象,在类的普通方法中指向父类的原型对象;在静态方法中指向父类.(**因为 super指向父类的原型对象,所以定义在父类实例上的方法或属性无法通过 super 获取**).通过 super调用父类的方法时, super会绑定子类的 this. 
+
+--------
+# 2017/5/18
+##React-Router
+- Router是 React的一个组件.Router组件本身只是一个容器,路由要通过 Route组件定义.
+	+ 参数 history,值为 hashHistoy.表示路由切换由URL的 hash变化决定.
+	+ 可以使用多个 Route组件来定义 URL和组件的映射关系.
+	
+##嵌套路由
+- 可以在 Route组件中嵌套多层 Route 组件来形成嵌套加载关系,按照嵌套次序依次加载组件.
+	+ Link 组件是`<a>`标签的 React 版本,可以接收 Router的状态.
+	
+## IndexRoute组件
+- 该组件是为了显式的指定默认情况下加载的子组件.可以理解为某个路径下的 index.html.
+
+## Redirect组件
+- 该组件用于路由的跳转,用户访问一个路由,会自动跳转到另一个路由.
+	+ 语法:
+	
+	`<Route path="inbox" component={Inbox}>
+  		{/* 从 /inbox/messages/:id 跳转到 /messages/:id */}
+  		＜Redirect from="messages/:id" to="/messages/:id" />
+	</Route>`
+		
+## IndexRedirect组件
+- 语法:
+		`<Route path="/" component={App}>
+  			＜IndexRedirect to="/welcome" />
+  			<Route path="welcome" component={Welcome} />
+  			<Route path="about" component={About} />
+		</Route>`
+- 用户访问根路径时,将重定向到子组件 welcome.
