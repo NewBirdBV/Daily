@@ -118,3 +118,16 @@
   			<Route path="about" component={About} />
 		</Route>`
 - 用户访问根路径时,将重定向到子组件 welcome.
+
+## antD-table组件
+- 可以使用 rowSelection属性来让表格中每行都可被选中.其值为一个对象,该对象中包含事件监听.如下:
+	+
+	`const rowSelection = {
+  		onChange: (selectedRowKeys, selectedRows) => {
+    		console.log('selectedRowKeys: ${selectedRowKeys}, 'selectedRows: ', 			selectedRows);
+  	},
+  	getCheckboxProps: record => ({
+    	disabled: record.name === 'Disabled User',    // Column configuration not to be 												      checked
+  	}),
+	};`
+
