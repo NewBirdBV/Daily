@@ -130,4 +130,29 @@
     	disabled: record.name === 'Disabled User',    // Column configuration not to be 												      checked
   	}),
 	};`
+	
+---------	
+	
+# 2017/5/19
+
+1. IndexLink组件
+	- 作用:需要链接到根路由,防止根路由的 activeStyle 和 activeClassName 属性失效.要使用IndexLink组件才能进行路径的精确匹配,只有路径精确匹配的情况下,根路由才具有 activeClassName属性和 activeStyle属性.
+	- 注:使用Link组件的 onlyActiveOnIndex属性也能在根路由上进行精确匹配.
+2. history 属性
+	- 值: 
+		+ hashHistory:路由通过 URL 的 hash部分(#)切换.
+		+ browserHistory:路由通过 History API 完成切换.
+		+ createMemoryHistory: 它创建一个内存中的history对象，不与浏览器URL互动.
+3. 表单处理
+	- 作用: 用于表单跳转,点击按钮跳转式和 Router 对接.
+	- 方法:
+		+ 使用 browserHistory.push(path). 用获取到的表单数据构建path.
+		+ 使用 context对象:`this.context.router.push(path)`
+4. 路径通配符
+	- 规则:
+		+ **:paramName** 该规则匹配 URL的一个部分,直到下一个/,?,#为止.可以通过 this.props.params.paramName 取出.
+		+ ():表示 URL这个部分可选.
+		+ *:模式匹配
+		+ **:匹配任意字符.
+				
 
