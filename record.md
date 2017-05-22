@@ -155,4 +155,50 @@
 		+ *:模式匹配
 		+ **:匹配任意字符.
 				
+-----------
+
+# 2017/5/22
+
+## react state
+- 可以无需使用 getInitialState 方法,直接在模块内初始化一个 state对象,并为 state 对象设置多个属性,以便以后使用 setState()方法来修改 state.
+
+## 编程风格
+- es6中一些编程规则
+	+ 静态字符串使用单引号;动态字符串使用反引号;
+	+ 使用数组成员对变量进行赋值时,优先使用数组的解构赋值.如下:
+	
+		`const arr = [1, 2, 3, 4];
+		 const [first, second] = arr;`
+	+ 如果函数返回多个值,优先使用对象的解构赋值
+		`function processInput(input) {
+  			return { left, right, top, bottom };
+		}`
+	+ 对象尽肯能的静态化,一旦定义,尽量避免添加新的属性.如果非要添加,使用Object.assign方法;
+		`const a = {};
+		Object.assign(a, { x: 3 });
+		`
+	+ 扩展运算符(...)可以用来拷贝数组:
+		<code>
+			const itemsCopy = [...items];//将 items的每个元素赋值给 itemCopy的每一个元素
+		</code>
+		+ 扩展运算符可以将一个数组变为参数序列,结合正常参数非常灵活:
+			```
+			function f(v, w, x, y, z) { };
+			var args = [0, 1];  
+			f(-1, ...args, 2, ...[3]);
+			```
+		+ 扩展运算符可以将数组转为函数的参数,进而直接传递给函数.
+			````
+			var args = [0, 1, 2];  
+			f(...args);  
+			```
+		+ 扩展运算符和解构赋值配合用于生成数组:`const [first, ...rest] = [1, 2, 3, 4, 5];`.注:扩展运算符用作数组赋值时,只能放在参数的最后一位.
+		+ 可以将字符串用扩展运算符转化我数组.	
+
+	+ 立即执行函数和需要使用函数表达式的场合中,尽可能使用箭头函数,而且还绑定了 this;
+	+ 使用默认值语法来设置函数参数的默认值:
+		`function handleThings(opts = {}) {
+  			// ...
+		}`
+	+ 用import来替代 require;用 export 代替 module.exports.
 
