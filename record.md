@@ -202,3 +202,28 @@
 		}`
 	+ 用import来替代 require;用 export 代替 module.exports.
 
+------------
+#2017/05/23
+## react-component的特性
+- 纯净函数和非纯净函数
+	+ 纯净函数:不改变函数的输入值(如参数等),并且总是给相同的输入返回相同的输出.如下:
+		```
+		function sum(a, b) {
+  			return a + b;
+		}
+		```
+	+ 非纯净函数:和纯净函数相反,非纯净函数将改变自身的输入.如下:
+		```
+		function withdraw(account, amount) {
+  			account.total -= amount;
+		}
+		```	
+	+ 所有的 react-component 都必须像纯净函数一样.
+- setState()方法可以接受一个函数作为参数.该函数的第一个参数是上一个状态,第二个参数是应用更新时的props.如下:
+	```
+	this.setState((prevState, props) => ({
+  		counter: prevState.counter + props.increment //返回 state对象
+	}));
+	```
+- react 承接事件时不能使用 `return false` 来阻止默认行为,要使用 preventDefault()方法.
+	+ 一般情况下,使用 react 无需给 DOM 元素分配事件,而是直接给元素一个监听器.
