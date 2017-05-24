@@ -236,4 +236,32 @@
 - 在父组件中实现的方法可以放入 props, 然后传递给子组件,在子组件中通过 `this.props.functionName()`进行调用即可.
 	+ 父组件中可以定义state并定义改变 state的方法.然后将改变 state的方法传递给子组件,在子组件中进行调用便可以实现子组件改变父组件状态.
 	+ 以上的方法实现了父组件和子组件之间的通讯,但该方法非常繁琐.可以考虑到使用 redux .
-	+ 
+## js遍历对象属性的常见方法
+- js中几种遍历对象的方法，包括for in、Object.keysObject.getOwnProperty,它们在使用场景方面各有不同。
+	+ for in主要用于遍历对象的可枚举属性，包括自有属性、**继承自原型的属性**.如下：
+		```
+		var obj = {"name":"Poly", "career":"it"}
+		Object.defineProperty(obj, "age", {value:"forever 18", enumerable:false});
+		Object.prototype.protoPer1 = function(){console.log("proto");};
+		Object.prototype.protoPer2 = 2;
+		console.log("For In : ");
+		for(var a in obj) console.log(a);// name career protoPer1 protoPer2
+		```
+	+ Object.keys.返回一个数组，数组元素均为对象自有的**可枚举**属性.
+		```
+		var obj = {"name":"Poly", "career":"it"}
+		Object.defineProperty(obj, "age", {value:"forever 18", enumerable:false});
+		Object.prototype.protoPer1 = function(){console.log("proto");};
+		Object.prototype.protoPer2 = 2;
+		console.log("Object.keys:")
+		console.log(Object.keys(obj)); //["name",'career']
+		```
+	+ Object.getOwnProperty,返回对象的自身的**全部属性**。
+		```
+		var obj = {"name":"Poly", "career":"it"}
+		Object.defineProperty(obj, "age", {value:"forever 18", enumerable:false});
+		Object.prototype.protoPer1 = function(){console.log("proto");};
+		Object.prototype.protoPer2 = 2;
+		console.log("Object.getOwnPropertyNames: ");
+		console.log(Object.getOwnPropertyNames(obj));//["name","career","age"]
+		```
