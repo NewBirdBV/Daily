@@ -267,3 +267,12 @@
 		console.log("Object.getOwnPropertyNames: ");
 		console.log(Object.getOwnPropertyNames(obj));//["name","career","age"]
 		```
+---------
+# 2017/05/25
+## react list key
+- 作用:唯一的标识列表项,最好为通过 map()方法生成的列表项添加key,而不是直接添加到`<li>`元素上.如下:
+	```
+	const listItems = numbers.map((number) =>
+       <ListItem key={number.toString()} value={number} />
+  	);
+	```
