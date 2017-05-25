@@ -276,3 +276,4 @@
        <ListItem key={number.toString()} value={number} />
   	);
 	```
+- 如果需要在组件中获取和key值相同的值，**不能使用this.props.key**,而要使用this.props.anotherName。
