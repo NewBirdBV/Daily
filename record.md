@@ -277,3 +277,25 @@
   	);
 	```
 - 如果需要在组件中获取和key值相同的值，**不能使用this.props.key**,而要使用this.props.anotherName。
+
+# 2017/05/26
+## redux设计思路
+- view与state一一对应;所有的state 保存在 store 里.state的变化是由view 导致的,view发出的Action便可以让 store 接收.	
+	- store
+		+ store的生成: `const store=createStore(fn);`
+	- state包含某个时点的 `state=store.getState();`
+	- action是改变 state 的唯一办法,使用 action就可以运送数据到 store.
+		```
+		const action = {
+  			type: 'ADD_TODO',
+  			payload: 'Learn Redux'
+		};
+		```
+	- `store.dispatch(actionObj)`是 view 发出 Action的唯一方法:参数为一个 action对象.
+- reducer:store 收到 action 之后,给出新的 state之后就会导致 view的变化,state 的计算过程为 reducer.
+	+ reducer一般不会手动调用,在创建 store的时候直接将reducer 传递给 createStore(reducer)方法.
+	+ 
+	 
+## react-state的共享问题
+- 场景:当多个组件需要同步state的时候,就可以将state提升到这些组件共有的父组件中.在父组件中通过 props来配置.
+- 如果在一个父组件中并不知道将来会为其添加多少子组件,那么可以在父组件中加入`this.props.children`,利用该属性,在将来为父组件内添加内容时,以前定义的父组件中自动会加入所有的内容.这个属性可以用在模板代码块上,在用该模板来实现组件时改写模板即可.
