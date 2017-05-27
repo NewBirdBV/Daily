@@ -299,3 +299,19 @@
 ## react-state的共享问题
 - 场景:当多个组件需要同步state的时候,就可以将state提升到这些组件共有的父组件中.在父组件中通过 props来配置.
 - 如果在一个父组件中并不知道将来会为其添加多少子组件,那么可以在父组件中加入`this.props.children`,利用该属性,在将来为父组件内添加内容时,以前定义的父组件中自动会加入所有的内容.这个属性可以用在模板代码块上,在用该模板来实现组件时改写模板即可.
+-----------
+# 2017/05/27
+## redux学习笔记_2
+- **redux 工作流程**:
+	1. 用户发出 action,`store.dispatch(action)`.
+	2. store 自动调用 reducer,并传入参数:当前 state和收到的 action.之后 reducer返回新的 state.
+	`let nextState=todo(previousState,action);`
+	3. state 发生变化, store 调用监听函数.
+	`store.subcribe(listener)`
+	4. 监听函数 listener 可以通过 `store.getState()`得到当前的状态.进而出发重新渲染 View.
+- store的实现:
+	+ 方法: store.getState(),store.dispatch(),store.subcribe()
+	+ createStore(reducer,window.State_from_server),第二个参数为服务器给出的初始状态,有此参数就会覆盖 reducer初始值.
+## babel class-transform
+- 在 class 中写箭头函数报语法错误,后来发现是因为 babel class转化的问题.是因为不能解析当前的提案语法二导致的.需要安装`"babel-plugin-transform-es2015-classes"`才能解决.
+	
