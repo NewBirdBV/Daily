@@ -314,4 +314,25 @@
 	+ createStore(reducer,window.State_from_server),第二个参数为服务器给出的初始状态,有此参数就会覆盖 reducer初始值.
 ## babel class-transform
 - 在 class 中写箭头函数报语法错误,后来发现是因为 babel class转化的问题.是因为不能解析当前的提案语法二导致的.需要安装`"babel-plugin-transform-es2015-classes"`才能解决.
-	
+-----------
+# 2017/05/30
+- React.PropTypes以及在v15.5版本中被废除，使用prop-type库来替代。
+	+ PropType.element可以仅指定一个子组件传递给父组件
+	```
+	MyComponent.propTypes = {
+  		children: PropTypes.element.isRequired
+	};
+	```
+- Default prop values:
+	```
+	ComponentName.defaultProps{
+  		name: 'Stranger'
+	};
+	```
+- ref属性采用回调函数，这个回调函数接收一个基础的DOM元素作为参数。回调函数将在组件mounted或者unmounted之后触发。
+	+ ref的本质是对组件(DOM元素)的一个引用，将其callback的参数赋值给该组件的一个实例。这样就可以通过该实例访问ＤＯＭ元素。
+	+ ref还可以用于自定义的组件上，callback接收组件的**已挂接实例**作为其参数。
+	```
+	<CustomTextInput
+        ref={(input) => { this.textInput = input; }} />
+	```	
