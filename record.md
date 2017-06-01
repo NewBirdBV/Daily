@@ -278,6 +278,7 @@
 	```
 - 如果需要在组件中获取和key值相同的值，**不能使用this.props.key**,而要使用this.props.anotherName。
 
+----------
 # 2017/05/26
 ## redux设计思路
 - view与state一一对应;所有的state 保存在 store 里.state的变化是由view 导致的,view发出的Action便可以让 store 接收.	
@@ -299,6 +300,7 @@
 ## react-state的共享问题
 - 场景:当多个组件需要同步state的时候,就可以将state提升到这些组件共有的父组件中.在父组件中通过 props来配置.
 - 如果在一个父组件中并不知道将来会为其添加多少子组件,那么可以在父组件中加入`this.props.children`,利用该属性,在将来为父组件内添加内容时,以前定义的父组件中自动会加入所有的内容.这个属性可以用在模板代码块上,在用该模板来实现组件时改写模板即可.
+
 -----------
 # 2017/05/27
 ## redux学习笔记_2
@@ -314,6 +316,7 @@
 	+ createStore(reducer,window.State_from_server),第二个参数为服务器给出的初始状态,有此参数就会覆盖 reducer初始值.
 ## babel class-transform
 - 在 class 中写箭头函数报语法错误,后来发现是因为 babel class转化的问题.是因为不能解析当前的提案语法二导致的.需要安装`"babel-plugin-transform-es2015-classes"`才能解决.
+
 -----------
 # 2017/05/30
 - React.PropTypes以及在v15.5版本中被废除，使用prop-type库来替代。
@@ -336,3 +339,18 @@
 	<CustomTextInput
         ref={(input) => { this.textInput = input; }} />
 	```	
+	
+----------
+# 2017/06/01
+## 暴露DOM ref 给父组件
+- 在一些特殊情况下,需要从父组件中访问子组件的 DOM 节点.可以将需要访问的 DOM 节点的ref 属性设置为**从父组件通过常规的props传递而来的**,传递的过程可以是多级的(如:祖先组件->父母组件->孩子组件).这样一来,在祖先组件中实现ref 的 callback 即可,callback的参数就是要访问的 DOM node. 
+
+## Uncontrolled Compoents
+- Uncontrolled Components 的数据是由DOM 本身来处理的,而通常的 controlled Components 是由event handler来处理. 
+- Uncontrolled Components的 `defaultValue`可以为表单指定初始值,该初始值不受`value`属性的影响.同样的,可以为`<input type="checkbox">` 和 `<input type="radio">` 指定`defaultChecked`
+
+## git 常用命令复习
+- `git commit -am "some str"`:用于文件之前已经提交,但是本次改动没有进入 stage.
+- `git push <远程主机名> <本地分支名>:<远程分支名>`:
+	+ 如果省略远程分支名,则表示将本地分支推送与之存在”追踪关系”的远程分支(通常两者同名)，如果该远程分支不存在，则会被新建。
+	+ 如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
