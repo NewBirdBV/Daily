@@ -354,3 +354,27 @@
 - `git push <远程主机名> <本地分支名>:<远程分支名>`:
 	+ 如果省略远程分支名,则表示将本地分支推送与之存在”追踪关系”的远程分支(通常两者同名)，如果该远程分支不存在，则会被新建。
 	+ 如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
+------------
+# 2017/6/2
+- React context API
+	+ 通过在父组件中用`getChildContext()` 方法定义一个 context对象.任何想要访问 context 对象中属性的组件都必须显式的指定一个 **contextTypes**属性,然后通过 this.context.contextName来访问context对象属性.
+	+ 组件定义了 contextTypes属性 之后,生命周期方法将会加入一个新的参数:context对象
+		+ `constructor(props, context)`
+		+ `componentWillReceiveProps(nextProps, nextContext)`
+		+ `shouldComponentUpdate(nextProps, nextState, nextContext)`
+		+ `componentWillUpdate(nextProps, nextState, nextContext)`
+		+ `componentDidUpdate(prevProps, prevState, prevContext)`
+	+ `getChildCotext()`将在 state或者props 改变后调用.为了更新 context中的数据,需要使用`this.setState()`来更新state.
+		```
+		constructor(props) {
+    		super(props);
+    		this.state = {type:'desktop'};
+  		}
+  		getChildContext() {
+    		return {type: this.state.type};
+  		}
+		```
+	+ `getChildContext`和 context同理,它指定传递给子组件的属性需要先通过`childContextTypes`来指定.
+		+ 通过withContext 和 getChildContext 指定的context元素都可以被子组件引用。在组件中可以通过`contextTypes`来指定所需的 context元素(即可以按需来添加 context 元素.)
+		+ context 是就近引用的,`getChildContext`指定的元素会覆盖`withContext`指定的元素.
+		+ context API 虽然可以减少组件之间的直接依赖关系.
