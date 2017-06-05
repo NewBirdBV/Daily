@@ -380,3 +380,19 @@
 		+ 通过withContext 和 getChildContext 指定的context元素都可以被子组件引用。在组件中可以通过`contextTypes`来指定所需的 context元素(即可以按需来添加 context 元素.)
 		+ context 是就近引用的,`getChildContext`指定的元素会覆盖`withContext`指定的元素.
 		+ context API 虽然可以减少组件之间的直接依赖关系.
+		
+-------------
+# 2017/6/5
+## HOCs
+- 简言之, HOCs是一个将整个组件当做参数然后返回一个新组件的函数.作为一种用来替代mixin的代码复用的解决方案.
+
+## react Lifecycle-Updating
+- props或 state的改变会触发更新,当组件重新渲染时 Updating方法会被调用.
+	+ `componentWillReceiveProps(nextProps)`:该方法有可能会在 props 不变的情况下依然调用,因此要比较当前值和下一个值.
+	+ `shouldComponentUpdate(nextProps, nextState)`:让 react 知道组件的输出是否不受当前state或props更改的影响.组件接收到新 state或 props 时,该方法将在渲染之前调用.
+	+ `componentWillUpdate(nextProps, nextState)`:当组件收到新的 state或 props时,将在渲染之前调用.当`shouldComponentUpdate()`返回 false时该方法不会被调用.
+	+ `componentDidUpdate(prevProps, prevState)`:组件更新完毕之后立即调用.一般的,可以在该方法中发出网络请求.
+	+ `forceUpdate()` 如果render（）方法依赖于某些其他数据，可以通过调用`forceUpdate（）`来告诉React该组件需要重新呈现。
+
+##setState(updater, [callback])
+- 该方法第二个参数 callback 一般是用`componentDidUpdate()`来取代.如果下一个 state对于上一个 state存在依赖,那么推荐使用 `updater function`.
