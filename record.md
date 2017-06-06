@@ -396,3 +396,17 @@
 
 ##setState(updater, [callback])
 - 该方法第二个参数 callback 一般是用`componentDidUpdate()`来取代.如果下一个 state对于上一个 state存在依赖,那么推荐使用 `updater function`.
+
+---------
+# 2017/6/6
+## Redux学习笔记_3
+- Redux没有 Dispatcher且不支持多个 store. 当应用不断变大时,就需要把跟级的 reducer 拆分为多个小的 reducers,每个 reducer 独立控制 state的不同部分.
+- ###Action 创建函数(Action Creator)
+	- **一个用于简单返回 action 对象的函数**.将该函数的结果传给 dispatch()便可以完成 dispatch过程.但大多数情况下是通过`react-redux`提供的`connect()`帮助器来调用 dispatch()
+	- Action创建函数也可以是异步函数.	
+- ###Reducer
+	- Reducer 中必须执行没有副作用的操作,没有 API 请求、没有变量修改，单纯执行计算。Reducer 从来都不直接修改 state,而是采用一种拷贝更新的方式.通常的做法有:
+		+ `Object.assign()方法`来返回一个新的 state 对象
+		+ 采用 ES7中的对象展开运算符.
+
+		Reducer相当于在旧的state基础上进行追加新的内容,该内容基于 action中的数据创建的.需要修改数组中指定的数据项而又不希望导致突变, 做法是在创建一个新的数组后, 将那些无需修改的项原封不动移入, 接着对需修改的项用新生成的对象替换。
