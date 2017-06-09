@@ -410,3 +410,25 @@
 		+ 采用 ES7中的对象展开运算符.
 
 		Reducer相当于在旧的state基础上进行追加新的内容,该内容基于 action中的数据创建的.需要修改数组中指定的数据项而又不希望导致突变, 做法是在创建一个新的数组后, 将那些无需修改的项原封不动移入, 接着对需修改的项用新生成的对象替换。
+
+------------
+# 2017/06/09
+## Redux搭配 React
+###容器组件和展示组件
+- 展示组件:该类组件的数据源是从 props 中获取用来表现骨架和样式.展示组件在无需本地 state或生命周期函数的情况下可以使用"函数式无状态组件"(这是出于简化考虑),当然可以使用 class.
+
+- 容器组件:**将展示组件连接到 Redux中**.数据来源为监听 redux state,主要用来描述数据获取和状态更新.可以使用 `connect()`方法来生成容器组件.
+	+ `connect()`方法:**返回一个新的已与 Redux store** 连接的组件类(该组件类已被注入 state和 action creator)
+		+ `mapStateToProps(state[,ownProps])`:该方法将当前store中的 state映射到展示组件的 props中.这样就可以在展示组件中通过获取props的方式来获取到state.如果指定了`ownProps`参数,则该参数表示传递到组件的所有 props.	
+		+ `mapDispatchToProps(dipatch[,ownProps])`:该方法可以用于分发action.它接收 dispatch()方法作为第一个参数,返回要注入到展示组件 props 中的回调方法.该参数也可以为一个普通对象,定义在该对象的函数都将被当作 Redux action creator.如果省略该参数,则dispatch将会注入到组件的 props 中.
+		+ 将上述两个方法传入到`connect()`中.
+		```
+		const VisibleTodoList = connect(
+  			mapStateToProps,
+  			mapDispatchToProps
+		)(TodoList)
+		```
+### 传入Store
+- 所有的容器组件都可以访问 Redux store.在渲染的根元素上加上`< Provider>`组件来让所有的容器组件访问 store;
+	
+
