@@ -394,7 +394,7 @@
 	+ `componentDidUpdate(prevProps, prevState)`:组件更新完毕之后立即调用.一般的,可以在该方法中发出网络请求.
 	+ `forceUpdate()` 如果render（）方法依赖于某些其他数据，可以通过调用`forceUpdate（）`来告诉React该组件需要重新呈现。
 
-##setState(updater, [callback])
+## setState(updater, [callback])
 - 该方法第二个参数 callback 一般是用`componentDidUpdate()`来取代.如果下一个 state对于上一个 state存在依赖,那么推荐使用 `updater function`.
 
 ---------
