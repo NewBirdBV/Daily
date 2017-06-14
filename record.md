@@ -432,4 +432,22 @@
 ### 传入Store
 - 所有的容器组件都可以访问 Redux store.在渲染的根元素上加上`< Provider>`组件来让所有的容器组件访问 store;
 	
+--------
+# 2017/6/14
+- ## 异步action创建函数
+	1. 使用 Redux-thunk 中间件:该中间件可以使action creator 返回函数(thunk action creator).
+		+ Redux-thunk中间件会调用thunk action creator 函数,该函数可以有返回值(比如可以返回异步请求网络资源的promise 对象).如下:
+		```
+		const fetchPosts = reddit => dispatch => {                      
+    		dispatch(requestPosts(reddit))
+    		return fetch(`https://www.reddit.com/r/${reddit}.json`)
+        		.then(response => response.json())
+        		.then(json => dispatch(receivePosts(reddit, json)))//再次 dispatch();
+		}
+		```
+		+ 通过使用`applyMiddleware()`可以让 dispatch 机制中引入 Redux Thunk中间件.
 
+- ## 异步数据流
+	+ 异步中间件包装了 store的 dispatch()方法,被包装的dispatch()可以用来dispatch除 action以外的内容.这些中间件可以解析出 dispatch 的内容.
+	+ 异步数据流以 dispatch一个普通的 action对象作为结束的标志.
+	
