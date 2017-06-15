@@ -451,3 +451,19 @@
 	+ 异步中间件包装了 store的 dispatch()方法,被包装的dispatch()可以用来dispatch除 action以外的内容.这些中间件可以解析出 dispatch 的内容.
 	+ 异步数据流以 dispatch一个普通的 action对象作为结束的标志.
 	
+----------	
+# 2017/6/15
+## redux 常用技巧
+- action type 的常量化.
+- action creator 的使用,而不是在dispatch的时候内联来生成他们.
+- action creators 由于代码结构都十分类似,因此我们可以将 action creators 封装起来,从而实现一个 action creators 的生成器:
+	```
+	makeActionCreator=(type,...argsNames)=>(...argsValue)=>{
+    	let action={type};
+    	argsNames.forEach((arg,index)=>{
+        	action[argsNames[index]]=argsValue[index];
+    	});
+    	return action;
+	};
+	```
+- 异步 action creators的目的是在每个 **action dispatch 之前注入自定义的逻辑来解释 action对象**.常见的用例是异步请求数据之后,将数据包装在 action 中 dispatch 出去.
